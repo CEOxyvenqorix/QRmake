@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Generador QR Elegante</title>
+
+<link rel="stylesheet" href="includes/style.css">
+
+<!-- Generador QR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+</head><body><div class="container">
+
+    <header class="header">
+        <div class="logo-icon">⌁</div>
+        <h1>Generador <span>QR</span></h1>
+        <p>Crea códigos QR elegantes para tu página web</p>
+    </header>
+
+    <main class="app">
+
+        <!-- PANEL DE CONFIGURACIÓN -->
+        <section class="panel settings">
+
+            <div class="panel-title">
+                <div class="title-icon">⚙</div>
+                <div>
+                    <h2>Personalizar QR</h2>
+                    <p>Configura tu código a tu gusto</p>
+                </div>
+            </div>
+
+            <!-- URL -->
+            <div class="field">
+                <label for="url">
+                    🔗 Página web
+                </label>
+
+                <div class="url-box">
+                    <input
+                        type="text"
+                        id="url"
+                        placeholder="Ej: el-laurel.vercel.app"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        class="create-btn"
+                        id="createBtn"
+                        type="button"
+                    >
+                        Crear
+                    </button>
+                </div>
+
+                <small>
+                    Puedes escribir con o sin https://
+                </small>
+            </div>
+
+            <!-- TEXTO -->
+            <div class="field">
+                <label for="text">
+                    ✨ Texto del QR
+                </label>
+
+                <input
+                    type="text"
+                    id="text"
+                    value="MENÚ DIGITAL"
+                    placeholder="Ej: MENÚ DIGITAL"
+                >
+            </div>
+
+            <!-- POSICIÓN -->
+            <div class="field">
+                <label for="position">
+                    📍 Posición del texto
+                </label>
+
+                <select id="position">
+                    <option value="bottom">
+                        Debajo del QR
+                    </option>
+
+                    <option value="top">
+                        Encima del QR
+                    </option>
+                </select>
+            </div>
+
+            <!-- COLORES -->
+            <div class="field">
+
+                <label>🎨 Colores</label>
+
+                <div class="colors">
+
+                    <div class="color-box">
+                        <span>QR</span>
+
+                        <input
+                            type="color"
+                            id="darkColor"
+                            value="#111111"
+                        >
+                    </div>
+
+                    <div class="color-box">
+                        <span>Fondo</span>
+
+                        <input
+                            type="color"
+                            id="lightColor"
+                            value="#ffffff"
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- IMAGEN -->
+            <div class="field">
+
+                <label>
+                    🖼️ Logo o imagen
+                </label>
+
+                <label
+                    class="upload-label"
+                    for="imageInput"
+                >
+                    📷 Elegir imagen
+                </label>
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/png,image/jpeg,image/webp"
+                >
+
+                <div
+                    class="image-name"
+                    id="imageName"
+                >
+                    Ninguna imagen seleccionada
+                </div>
+
+                <button
+                    class="remove-btn"
+                    id="removeImage"
+                    type="button"
+                >
+                    🗑️ Quitar imagen
+                </button>
+
+            </div>
+
+            <button
+                class="generate-btn"
+                id="generateBtn"
+                type="button"
+            >
+                ✨ Generar / Actualizar QR
+            </button>
+
+            <div class="tip">
+                <strong>💡 Consejo</strong><br>
+                Utiliza un logo sencillo y evita hacerlo demasiado
+                grande para que el código siga siendo fácil de escanear.
+            </div>
+
+        </section>
+
+
+        <!-- PREVISUALIZACIÓN -->
+        <section class="panel preview">
+
+            <div class="panel-title">
+                <div class="title-icon">👁</div>
+
+                <div>
+                    <h2>Vista previa</h2>
+                    <p>Así quedará tu código QR</p>
+                </div>
+            </div>
+
+            <div class="preview-area">
+
+                <div
+                    class="qr-card"
+                    id="qrCard"
+                >
+
+                    <div
+                        id="topText"
+                        class="qr-text top-text"
+                    ></div>
+
+                    <div
+                        id="qrWrapper"
+                        class="qr-wrapper"
+                    >
+
+                        <div
+                            id="emptyQR"
+                            class="empty-qr"
+                        >
+                            <div class="empty-icon">⌁</div>
+
+                            <strong>
+                                Tu QR aparecerá aquí
+                            </strong>
+
+                            <span>
+                                Escribe una página web y pulsa
+                                <b>Crear</b>
+                            </span>
+                        </div>
+
+                        <div id="qrcode"></div>
+
+                        <img
+                            id="qrLogo"
+                            class="qr-logo"
+                            alt="Logo del QR"
+                        >
+
+                    </div>
+
+                    <div
+                        id="bottomText"
+                        class="qr-text bottom-text"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <div
+                class="status"
+                id="status"
+            >
+                Esperando una dirección web...
+            </div>
+
+            <button
+                class="download-btn"
+                id="downloadBtn"
+                type="button"
+            >
+                📥 Descargar QR en PNG
+            </button>
+
+        </section>
+
+    </main>
+
+    <footer>
+        Generador QR · Crea códigos para tus clientes
+    </footer>
+
+</div>
+
+
+<!-- JavaScript -->
+<script src="includes/script.js"></script>
+
+</body>
+</html>
